@@ -35,25 +35,109 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
         public void TestIndex01()
         {
 
+            var claimCollection = new Claim("Username", "Rous");
+           
             var a =  new List<Biblioteca>();
             var bi1 = new Biblioteca
             {
-                Id = 1,Estado = 1,Libro = new Libro(), Usuario = new Usuario(),LibroId = 1,UsuarioId = 1
+                Id = 1,Estado = 1,Libro = new Libro(), Usuario = new Usuario{Id = 1,Nombres = "Ro",Password = "Pos",Username = "Rous"},LibroId = 1,UsuarioId = 1
             };
 
             mocBiblioteca.Setup(i => i.getLisBiblioteca(1)).Returns(a);
             var authMock = new Mock<InterfaceAuth>();
-            authMock.Setup(a => a.LoggedUser()).Returns(() => new Claim("ID","1"));
+            authMock.Setup(a => a.LoggedUser()).Returns(claimCollection);
             var userMock = new Mock<InterfaceUser>();
-            userMock.Setup(a => a.getUserId(new Claim("ID","1"))).Returns(new Usuario
-                { Id = 1, Nombres = "a", Password = "a", Username = "a" });
+            userMock.Setup(a => a.getUserId(claimCollection)).Returns(new Usuario()
+            {
+                Id = 1,Nombres = "a",Username = "a"
+            });
 
 
-            var controller = new BibliotecaController(null,authMock.Object,null,null,mocBiblioteca.Object);
+            var controller = new BibliotecaController(null,authMock.Object, userMock.Object, null,mocBiblioteca.Object);
            
             var view = controller.Index();
 
             Assert.IsInstanceOf<ViewResult>(view);
         }
+        [Test]
+        public void  TestMarcarComoLeyendo02()
+        {
+             
+            var claimCollection = new Claim("Username", "Rous");
+
+            var a = new List<Biblioteca>();
+            var bi1 = new Biblioteca
+            {
+                Id = 1,
+                Estado = 1,
+                Libro = new Libro(),
+                Usuario = new Usuario { Id = 1, Nombres = "Ro", Password = "Pos", Username = "Rous" },
+                LibroId = 1,
+                UsuarioId = 1
+            };
+            a.Add(bi1);
+
+            mocBiblioteca.Setup(i => i.saveLibroPorLeer(1, 1));
+            var authMock = new Mock<InterfaceAuth>();
+            authMock.Setup(a => a.LoggedUser()).Returns(claimCollection);
+            
+            var userMock = new Mock<InterfaceUser>();
+            userMock.Setup(a => a.getUserId(claimCollection)).Returns(new Usuario()
+            {
+                Id = 1,
+                Nombres = "a",
+                Username = "a"
+            });
+
+
+          
+
+            var controller = new BibliotecaController(null, authMock.Object, userMock.Object, null, mocBiblioteca.Object);
+
+            var view = controller.Add(1);
+
+            Assert.IsInstanceOf<RedirectToActionResult>(view);
+        }
+
+        [Test]
+        public void TestAdd02()
+        {
+
+            var claimCollection = new Claim("Username", "Rous");
+
+            var a = new List<Biblioteca>();
+            var bi1 = new Biblioteca
+            {
+                Id = 1,
+                Estado = 1,
+                Libro = new Libro(),
+                Usuario = new Usuario { Id = 1, Nombres = "Ro", Password = "Pos", Username = "Rous" },
+                LibroId = 1,
+                UsuarioId = 1
+            };
+            a.Add(bi1);
+
+            mocBiblioteca.Setup(i => i.getBibliotecaID(new Usuario(),1)).Returns(bi1);
+            
+
+            var authMock = new Mock<InterfaceAuth>();
+            authMock.Setup(a => a.LoggedUser()).Returns(claimCollection);
+
+            var userMock = new Mock<InterfaceUser>();
+            userMock.Setup(a => a.getUserId(claimCollection)).Returns(new Usuario()
+            {
+                Id = 1,
+                Nombres = "a",
+                Username = "a"
+            });
+
+
+            var controller = new BibliotecaController(null, authMock.Object, userMock.Object, null, mocBiblioteca.Object);
+
+            var view = controller.Add(1);
+
+            Assert.IsInstanceOf<RedirectToActionResult>(view);
+        }
+       
     }
 }

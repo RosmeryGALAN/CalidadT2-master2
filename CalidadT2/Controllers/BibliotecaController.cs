@@ -45,7 +45,6 @@ namespace CalidadT2.Controllers
 
             interfaceBiblioteca.saveLibroPorLeer(user.Id,libro);
 
-            TempData["SuccessMessage"] = "Se añádio el libro a su biblioteca";
 
             return RedirectToAction("Index", "Home");
         }
@@ -58,7 +57,7 @@ namespace CalidadT2.Controllers
            var libro = interfaceBiblioteca.getBibliotecaID(user, libroId);
 
            interfaceLibro.saverLibroLeyendo(libro);
-            TempData["SuccessMessage"] = "Se marco como leyendo el libro";
+          //  TempData["SuccessMessage"] = "Se marco como leyendo el libro";
 
             return RedirectToAction("Index");
         }
@@ -71,7 +70,7 @@ namespace CalidadT2.Controllers
             var libro = interfaceBiblioteca.getBibliotecaID(user, libroId);
             interfaceLibro.saverLibroTerminado(libro);
 
-            TempData["SuccessMessage"] = "Se marco como leyendo el libro";
+            //TempData["SuccessMessage"] = "Se marco como leyendo el libro";
             return RedirectToAction("Index");
         }
 

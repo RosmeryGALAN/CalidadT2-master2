@@ -47,5 +47,6 @@ namespace CalidadT2.Repositorio
                 .Where(o => o.UsuarioId == id)
                 .ToList();
         }
+        
     }
 }
