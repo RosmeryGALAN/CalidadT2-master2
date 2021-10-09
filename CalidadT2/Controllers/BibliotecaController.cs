@@ -14,14 +14,15 @@ namespace CalidadT2.Controllers
     [Authorize]
     public class BibliotecaController : Controller
     {
-        private readonly AppBibliotecaContext app;
+     //   private readonly AppBibliotecaContext app;
         protected readonly InterfaceAuth IAuth;
         protected readonly InterfaceUser InterfaceUser;
         protected readonly InterfaceBiblioteca interfaceBiblioteca;
         protected readonly InterfaceLibro interfaceLibro;
-        public BibliotecaController(AppBibliotecaContext app, InterfaceAuth IAuth, InterfaceUser InterfaceUser, InterfaceLibro interfaceLibro, InterfaceBiblioteca interfaceBiblioteca)
+        //AppBibliotecaContext app
+        public BibliotecaController( InterfaceAuth IAuth, InterfaceUser InterfaceUser, InterfaceLibro interfaceLibro, InterfaceBiblioteca interfaceBiblioteca)
         {
-            this.app = app;
+          //  this.app = app;
             this.IAuth = IAuth;
             this.InterfaceUser = InterfaceUser;
             this.interfaceLibro = interfaceLibro;

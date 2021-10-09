@@ -53,14 +53,14 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
             });
 
 
-            var controller = new BibliotecaController(null,authMock.Object, userMock.Object, null,mocBiblioteca.Object);
+            var controller = new BibliotecaController(authMock.Object, userMock.Object, null,mocBiblioteca.Object);
            
             var view = controller.Index();
 
             Assert.IsInstanceOf<ViewResult>(view);
         }
         [Test]
-        public void  TestMarcarComoLeyendo02()
+        public void  TestMarcarComoLeyendo03()
         {
              
             var claimCollection = new Claim("Username", "Rous");
@@ -70,17 +70,23 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
             {
                 Id = 1,
                 Estado = 1,
-                Libro = new Libro(),
-                Usuario = new Usuario { Id = 1, Nombres = "Ro", Password = "Pos", Username = "Rous" },
+                Libro = new Libro{Autor = null,Id = 1,AutorId = 1,Comentarios = null,Imagen = null,Nombre = "Rous",Puntaje = 0},
+                Usuario = new Usuario { Id = 1, Nombres = "Rous", Password = "Rous", Username = "Rous" },
                 LibroId = 1,
                 UsuarioId = 1
             };
-            a.Add(bi1);
+           
 
-            mocBiblioteca.Setup(i => i.saveLibroPorLeer(1, 1));
+      
+            mocBiblioteca.Setup(i => i.getBibliotecaID(new Usuario
+            {
+                Id = 1,Nombres = "Rous",Password = "Rous",Username = "Rous"
+            }, 1)).Returns(new Biblioteca());
             var authMock = new Mock<InterfaceAuth>();
             authMock.Setup(a => a.LoggedUser()).Returns(claimCollection);
             
+
+
             var userMock = new Mock<InterfaceUser>();
             userMock.Setup(a => a.getUserId(claimCollection)).Returns(new Usuario()
             {
@@ -89,12 +95,12 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
                 Username = "a"
             });
 
+            mocibror.Setup(a => a.saverLibroLeyendo(bi1));
+            mocibror.Setup(e => e.GetLisLibros()).Returns(new List<Libro>());
 
-          
+            var controller = new BibliotecaController( authMock.Object, userMock.Object, mocibror.Object, mocBiblioteca.Object);
 
-            var controller = new BibliotecaController(null, authMock.Object, userMock.Object, null, mocBiblioteca.Object);
-
-            var view = controller.Add(1);
+            var view = controller.MarcarComoLeyendo(1);
 
             Assert.IsInstanceOf<RedirectToActionResult>(view);
         }
@@ -117,9 +123,7 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
             };
             a.Add(bi1);
 
-            mocBiblioteca.Setup(i => i.getBibliotecaID(new Usuario(),1)).Returns(bi1);
             
-
             var authMock = new Mock<InterfaceAuth>();
             authMock.Setup(a => a.LoggedUser()).Returns(claimCollection);
 
@@ -132,12 +136,60 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
             });
 
 
-            var controller = new BibliotecaController(null, authMock.Object, userMock.Object, null, mocBiblioteca.Object);
+            var controller = new BibliotecaController(authMock.Object, userMock.Object, null, mocBiblioteca.Object);
 
             var view = controller.Add(1);
 
             Assert.IsInstanceOf<RedirectToActionResult>(view);
         }
-       
+        [Test]
+        public void TestMarcarComoTerminado04()
+        {
+
+            var claimCollection = new Claim("Username", "Rous");
+
+            var a = new List<Biblioteca>();
+            var bi1 = new Biblioteca
+            {
+                Id = 1,
+                Estado = 1,
+                Libro = new Libro { Autor = null, Id = 1, AutorId = 1, Comentarios = null, Imagen = null, Nombre = "Rous", Puntaje = 0 },
+                Usuario = new Usuario { Id = 1, Nombres = "Rous", Password = "Rous", Username = "Rous" },
+                LibroId = 1,
+                UsuarioId = 1
+            };
+
+
+
+            mocBiblioteca.Setup(i => i.getBibliotecaID(new Usuario
+            {
+                Id = 1,
+                Nombres = "Rous",
+                Password = "Rous",
+                Username = "Rous"
+            }, 1)).Returns(new Biblioteca());
+            var authMock = new Mock<InterfaceAuth>();
+            authMock.Setup(a => a.LoggedUser()).Returns(claimCollection);
+
+
+
+            var userMock = new Mock<InterfaceUser>();
+            userMock.Setup(a => a.getUserId(claimCollection)).Returns(new Usuario()
+            {
+                Id = 1,
+                Nombres = "a",
+                Username = "a"
+            });
+
+            mocibror.Setup(a => a.saverLibroLeyendo(bi1));
+            mocibror.Setup(e => e.GetLisLibros()).Returns(new List<Libro>());
+
+            var controller = new BibliotecaController(authMock.Object, userMock.Object, mocibror.Object, mocBiblioteca.Object);
+
+            var view = controller.MarcarComoTerminado(1);
+
+            Assert.IsInstanceOf<RedirectToActionResult>(view);
+        }
+        
     }
 }
