@@ -4,7 +4,8 @@ using System.Text;
 
 namespace TestCalidadT2.Controlador.HomeControllerTest
 {
-    class TestHomeController
+    public class TestHomeController
     {
+
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
+using CalidadT2.Controllers;
 using CalidadT2.Interface;
 using CalidadT2.Models;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 
@@ -17,6 +20,7 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
         private Mock<InterfaceBiblioteca> mocBiblioteca;
         private Mock<InterfaceLibro> mocibror;
 
+        private Mock<AppBibliotecaContext> _context;
         [SetUp]
         public void SetUp()
         {
@@ -24,6 +28,8 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
             mocAut = new Mock<InterfaceAuth>();
             mocBiblioteca = new Mock<InterfaceBiblioteca>();
             mocibror = new Mock<InterfaceLibro>();
+
+            _context = ContextTest.GetAplicationContextMockBiblioteca();
         }
         [Test]
         public void TestIndex01()
@@ -36,6 +42,18 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
             };
 
             mocBiblioteca.Setup(i => i.getLisBiblioteca(1)).Returns(a);
+            var authMock = new Mock<InterfaceAuth>();
+            authMock.Setup(a => a.LoggedUser()).Returns(() => new Claim("ID","1"));
+            var userMock = new Mock<InterfaceUser>();
+            userMock.Setup(a => a.getUserId(new Claim("ID","1"))).Returns(new Usuario
+                { Id = 1, Nombres = "a", Password = "a", Username = "a" });
+
+
+            var controller = new BibliotecaController(null,authMock.Object,null,null,mocBiblioteca.Object);
+           
+            var view = controller.Index();
+
+            Assert.IsInstanceOf<ViewResult>(view);
         }
     }
 }

@@ -77,9 +77,9 @@ namespace CalidadT2.Controllers
 
         private Usuario LoggedUser()
         {
-            var claim = HttpContext.User.Claims.FirstOrDefault();
-           // var claim = IAuth.LoggedUser();
-            var user = InterfaceUser.getUserId(claim);
+          //  var claim = HttpContext.User.Claims.FirstOrDefault();
+           var claim = IAuth.LoggedUser();
+           var user = InterfaceUser.getUserId(claim);
                 //app.Usuarios.Where(o => o.Username == claim.Value).FirstOrDefault();
             return user;
         }
