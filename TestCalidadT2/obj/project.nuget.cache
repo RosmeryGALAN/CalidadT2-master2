@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hlO2L1sliGhdKErQXzJHs6a5y1EnSt3F2AO+P7x18WRt1l5ha1oFWc51Big4AtBGoXlvBmh+yihGf7dghRKBVg==",
+  "dgSpecHash": "PrxwIpoBMREmzeP3x6c48vJ/9i6me+fMWb2no9/StFdKMwy5e9vebNogATEiLGuDfpjWI3/FK0bZF6PzlVyBPw==",
   "success": true,
-  "projectFilePath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master\\TestCalidadT2\\TestCalidadT2.csproj",
+  "projectFilePath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master2\\TestCalidadT2\\TestCalidadT2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ander\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\ander\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.5\\microsoft.aspnetcore.mvc.razor.extensions.3.1.5.nupkg.sha512",

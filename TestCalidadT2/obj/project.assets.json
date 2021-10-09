@@ -7698,11 +7698,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master\\TestCalidadT2\\TestCalidadT2.csproj",
+      "projectUniqueName": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master2\\TestCalidadT2\\TestCalidadT2.csproj",
       "projectName": "TestCalidadT2",
-      "projectPath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master\\TestCalidadT2\\TestCalidadT2.csproj",
+      "projectPath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master2\\TestCalidadT2\\TestCalidadT2.csproj",
       "packagesPath": "C:\\Users\\ander\\.nuget\\packages\\",
-      "outputPath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master\\TestCalidadT2\\obj\\",
+      "outputPath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master2\\TestCalidadT2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ander\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7719,8 +7719,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master\\CalidadT2\\CalidadT2.csproj": {
-              "projectPath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master\\CalidadT2\\CalidadT2.csproj"
+            "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master2\\CalidadT2\\CalidadT2.csproj": {
+              "projectPath": "D:\\UNIVERSIDAD\\CALIDAD\\ROS\\CalidadT2-master2\\CalidadT2\\CalidadT2.csproj"
             }
           }
         }

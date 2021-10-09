@@ -28,7 +28,14 @@ namespace TestCalidadT2.Controlador.BibliotecaControllerTest
         [Test]
         public void TestIndex01()
         {
-         //   mock.Setup(i => i.GetAll()).Returns(new List<User>());
+
+            var a =  new List<Biblioteca>();
+            var bi1 = new Biblioteca
+            {
+                Id = 1,Estado = 1,Libro = new Libro(), Usuario = new Usuario(),LibroId = 1,UsuarioId = 1
+            };
+
+            mocBiblioteca.Setup(i => i.getLisBiblioteca(1)).Returns(a);
         }
     }
 }
